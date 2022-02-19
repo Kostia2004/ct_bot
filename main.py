@@ -52,7 +52,7 @@ def handle_docs_photo(message):
     ct = ''
     path = message.document.file_name
     segmenter = Segmenter()
-    src = 'C:/Users/sasha/PycharmProjects/Medbot/files' + path
+    src = './files' + path
     if path.endswith('.gz'):
         with open(src, 'wb') as new_file:
             new_file.write(downloaded_file)
@@ -63,7 +63,7 @@ def handle_docs_photo(message):
             new_file.write(downloaded_file)
         arr = read_nii(src)
     bot.reply_to(message, "Ожидайте...")
-    result, lung, ct = Segmenter.segmentation(arr)
+    result, lung, ct = segmenter.segmentation(ct_scan=arr)
         
     
     print(result.shape)
