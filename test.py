@@ -1,4 +1,4 @@
-import segmentation
+from segmentation import Segmenter
 import nibabel as nib
 import numpy as np
 import os
@@ -13,10 +13,11 @@ def read_nii(filepath):
 def main():
     testfiles = os.listdir('./testfiles')
     os.mkdir('./testresult/')
+    segmenter = Segmenter()
     for file in testfiles:
         print(file)
         arr = read_nii('./testfiles/'+file)
-        result, lung, ct = segmentation.segmentation(arr)
+        result, lung, ct = segmenter.segmentation(arr)
         height = arr.shape[2]
         for i in range(height):
             print(i)
