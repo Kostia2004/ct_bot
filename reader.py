@@ -31,4 +31,8 @@ class Reader():
         return array
 
     def read(self, path):
-        pass
+        if path.endswith('nii'):
+            return self.read_nii(path)
+        if path.endswith('gz'):
+            return self.read_gzip(path)
+        return None
